@@ -22,8 +22,9 @@ This algorithm takes a number of steps that is linear in b. Now suppose we inclu
       (+ a (mul a (- b 1)))))
 
 (define (fast-mul a b)
-  (cond ((or (= b 0) (= a 0)) 0)
+  (cond ((= b 0)) 0)
         ((= b 1) a)
-        ((even? b) (fast-mul (double a) (half b)))    ; 5 * 8 -> 10 * 4 -> 20 * 2 -> 40 * 1 -> 
-        (else (+ a (fast-mul a (- b 1))))))
+        ((even? b (fast-mul (double a) (half b))))  ; 5 * 8 -> 10 * 4 -> 20 * 2 -> 40 * 1
+        (else (+ a (fast-mul a (- b 1)))))
+
 
